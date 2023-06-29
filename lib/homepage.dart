@@ -3,21 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 
-class homepage extends StatelessWidget {
+class homepage extends StatefulWidget {
   const homepage({super.key});
 
+  @override
+  State<homepage> createState() => _homepageState();
+}
+
+class _homepageState extends State<homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(
-                left: 80, bottom: 80, right: 80, top: 120),
-            child: Image.network(
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPo-torn9o3bEmMZro3fF4kG3hWEf26tAyHGJykvQw0tHBTnVmnz2UddZiIDFtfvH-Y5E&usqp=CAU'),
-          ),
+          Lottie.network(
+              'https://assets7.lottiefiles.com/private_files/lf30_nocwwn6m.json',
+              height: 400),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text('We deliver food to your doorstep.',

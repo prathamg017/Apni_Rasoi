@@ -76,76 +76,76 @@ class _billinpageState extends State<billinpage> {
                         ),
                         padding: const EdgeInsets.all(24),
                         child: Wrap(
-                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Total Price',
-                                  style: TextStyle(color: Colors.green[200]),
-                                ),
-
-                                const SizedBox(height: 8),
-                                // total price
-                                Text(
-                                  '\₹${calci()}',
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Total Price',
+                                    style: TextStyle(color: Colors.green[200]),
                                   ),
-                                ),
-                              ],
-                            ),
 
-                            // pay now
-                            Container(
-                              decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.green.shade200),
-                                borderRadius: BorderRadius.circular(28),
-                              ),
-                              padding: const EdgeInsets.all(12),
-                              child: GestureDetector(
-                                onTap: () {
-                                  FocusManager.instance.primaryFocus?.unfocus();
-
-                                  var whatsappUrl = "whatsapp://send?phone=${'+91' + '8109224176'}" +
-                                      "&text=${Uri.encodeComponent('Name :' + widget.name.text + '\n'
-                                          'Number: ' + widget.number.text + '\n'
-                                          'Address: ' + widget.address.text + '\n'
-                                          'Order: ' + content() + '\n' 'Total: ' + calci() + '\n')}";
-                                  try {
-                                    launch(whatsappUrl);
-                                  } catch (e) {
-                                    //To handle error and display error message
-                                    print(' error');
-                                  }
-                                },
-                                child: Row(
-                                  children: const [
-                                    Text(
-                                      'Pay Now',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    Icon(
-                                      Icons.arrow_forward_ios,
-                                      size: 16,
+                                  const SizedBox(height: 8),
+                                  // total price
+                                  Text(
+                                    '₹${calci().toString()}',
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
                                       color: Colors.white,
                                     ),
-                                  ],
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+
+                              // pay now
+                              MouseRegion(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Colors.green.shade200),
+                                    borderRadius: BorderRadius.circular(28),
+                                  ),
+                                  padding: const EdgeInsets.all(12),
+                                  child: GestureDetector(
+                                      onTap: () {
+                                        FocusManager.instance.primaryFocus
+                                            ?.unfocus();
+
+                                        var whatsappUrl = "whatsapp://send?phone=${'+91' + '8109224176'}" +
+                                            "&text=${Uri.encodeComponent('Name :' + widget.name.text + '\n'
+                                                'Number: ' + widget.number.text + '\n'
+                                                'Address: ' + widget.address.text + '\n'
+                                                'Order: ' + content().toString() + '\n' 'Total: ' + calci().toString() + '\n')}";
+                                        try {
+                                          launch(whatsappUrl);
+                                        } catch (e) {
+                                          //To handle error and display error message
+                                          print('error');
+                                        }
+                                      },
+                                      child: Row(children: const [
+                                        Text(
+                                          'Order Now',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        Icon(
+                                          Icons.arrow_forward_ios,
+                                          size: 16,
+                                          color: Colors.white,
+                                        ),
+                                      ])),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
+                            ]),
                       ),
                     )
                   ],
                 ),
               ),
-            ),
+            )
           ],
         ),
       ),
@@ -153,11 +153,22 @@ class _billinpageState extends State<billinpage> {
   }
 }
 
+// dynamic content() {
+//   List<dynamic> l = [];
+//   for (int i = 0; i < cartitem.length; i++) {
+//     l.add(cartitem[i][0]);
+//     l.add(cartitem[i][1]);
+//     l.add(cartitem[i][4]);
+//   }
+//   return l;
+// }
 dynamic content() {
-  List<dynamic> l = [];
+  String result = '';
+
   for (int i = 0; i < cartitem.length; i++) {
-    l.add(cartitem[i][0]);
-    l.add(cartitem[i][1]);
+    String item = '${cartitem[i][0]} X ${cartitem[i][1]} X ${cartitem[i][4]}';
+    result += (result.isEmpty ? '' : ', ') + item;
   }
-  return l.toString();
+
+  return result;
 }

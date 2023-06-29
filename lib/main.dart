@@ -12,9 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'ApniRasoi-Ghar Jaisa Swaad !',
-      debugShowCheckedModeBanner: false,
-      home: homepage(),
-    );
+        title: 'ApniRasoi-Ghar Jaisa Swaad !',
+        debugShowCheckedModeBanner: false,
+        home: homepage());
   }
 }
